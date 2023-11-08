@@ -1,8 +1,14 @@
+import { Link } from "react-router-dom";
 import ItemCard from "../../components/ItemCard";
 
 export default function AllItems() {
     return (
-        <div className="col">
+        <>
+            <div className="border-bottom border-light mb-5 py-3">
+                <Link to='/stock' className="border-bottom border-3 border-light p-3"> Todos os items </Link>
+                <Link to='new' className="mx-5 p-3"> Novo item </Link>
+            </div>
+
             <div className="row bg-dark shadow p-4">
                 <span className="col-4 fw-bold"> ID </span>
                 <span className="col-2 fw-bold"> Nome </span>
@@ -24,6 +30,6 @@ export default function AllItems() {
                 qtd={32}
                 category='Livros'
             />
-        </div>
+        </>
     )
 }
