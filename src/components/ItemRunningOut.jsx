@@ -1,4 +1,4 @@
-import ButtonShow from "./ButtonShow";
+import ButtonShow from "./Button";
 import PropTypes from "prop-types"
 
 ItemRunningOut.propTypes = {
@@ -12,7 +12,7 @@ export default function ItemRunningOut({ title, qtd, url }) {
         <div className="row p-4 d-flex align-items-center">
             <span className="col-8"> {title} </span>
             <span className="col"> {qtd} </span>
-            <span className="col"> <ButtonShow url={url}/> </span>
+            <span className="col"> <ButtonShow title='Ver' url={url} color='light'/> </span>
         </div>
     )
 }

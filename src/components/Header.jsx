@@ -6,7 +6,7 @@ export default function Header() {
             <h1 className="fs-5"> REACT STOCK </h1>
             <nav>
                 <Link to='/' className="mx-4"> Início </Link>
-                <Link to='/items'> Items </Link>
+                <Link to='/stock'> Items </Link>
             </nav>
         </header>
     )
