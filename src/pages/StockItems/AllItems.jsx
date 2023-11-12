@@ -21,8 +21,8 @@ export default function AllItems() {
                         name={item.name}
                         quantity={item.quantity}
                         category={item.category}
-                        urlShow={`/items/${item.id}`}
-                        urlUpdate={`/items/${item.id}/update`}
+                        urlShow={`/stock/${item.id}`}
+                        urlUpdate={`/stock/${item.id}/update`}
                     />
                 )
             )}

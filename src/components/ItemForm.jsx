@@ -18,22 +18,29 @@ export default function ItemForm({ itemToUpdate }) {
     }
 
     const [item, setItem] = useState(itemToUpdate ? itemToUpdate : defaultItem)
-    const { addItem } = useStock()
+    const { addItem, updateItem } = useStock()
     const inputRef = useRef(null)
 
     function handleSubmit(event) {
         event.preventDefault()
         try {
-            const validItem = new StockItem(item)
-            addItem(validItem)
-            console.log(validItem)
-            setItem(defaultItem)
-            alert('Item salvo com sucesso!')
-            inputRef.current.focus() // Foca no primeiro item do formulário após o envio e reset do mesmo 
+            if (itemToUpdate) {
+                updateItem(itemToUpdate.id, item) // ID do item a ser atualizado e um objeto com os novos valores do item
+                alert('Item atualizado com sucesso!')
+            }
+            else {
+                const validItem = new StockItem(item)
+                addItem(validItem)
+                setItem(defaultItem)
+                alert('Item salvo com sucesso!')
+            }
         }
         catch (error) {
             console.log(error)
             console.log(error.message)
+        }
+        finally {
+            inputRef.current.focus() // Foca no primeiro item do formulário após o envio e reset do mesmo 
         }
     }
 

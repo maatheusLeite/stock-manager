@@ -21,10 +21,24 @@ export function StockContextProvider({ children }) {
         return items
     })
 
+    function getItem(itemId) {
+        return items.find(item => item.id === +itemId)
+    }
+
     function addItem(item) {
         setItems(currentState => {
             const updatedItems = [item, ...currentState]
             localStorage.setItem('ml-react-stock', JSON.stringify(updatedItems))
+            return updatedItems
+        })
+    }
+
+    function updateItem(itemId, newAttributes) {
+        setItems(currentState => {
+            const itemIndex = currentState.findIndex(item => item.id === +itemId) // Pega o indice onde o item está armazenado no array
+            const updatedItems = [...currentState] // Cria uma copia do array dos items
+            Object.assign(updatedItems[itemIndex], newAttributes, { updatedAt: new Date()}) // Por meio do Object, o objeto é encontrado no indice indicado do array e são setados seus novos atributos e sua data de atualização é atualizada
+            localStorage.setItem('ml-react-stock', JSON.stringify(updatedItems)) // Salva novo item no local-storage
             return updatedItems
         })
     }
@@ -41,6 +55,8 @@ export function StockContextProvider({ children }) {
     const stock = {
         items,
         addItem,
+        getItem,
+        updateItem,
         deleteItem
     }
 
