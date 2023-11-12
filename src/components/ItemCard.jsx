@@ -1,5 +1,6 @@
 import Button from "./Button";
 import PropTypes from "prop-types"
+import DeleteButton from "./DeleteButton";
 
 ItemCard.propTypes = {
     id: PropTypes.number,
@@ -10,7 +11,7 @@ ItemCard.propTypes = {
     urlUpdate: PropTypes.string
 }
 
-export default function ItemCard({ id, name, quantity, category, urlShow, urlUpdate }) {
+export default function ItemCard({ id, name, quantity, category, urlShow, urlUpdate }) {    
     return (
         <div className="row p-4">
             <span className="col-4"> {id} </span>
@@ -20,7 +21,7 @@ export default function ItemCard({ id, name, quantity, category, urlShow, urlUpd
             <div className="col-3">
                 <span className="col"> <Button title='Ver' url={urlShow} color='info' /> </span>
                 <span className="col mx-3"> <Button title='Atualizar' url={urlUpdate} color='light' /> </span>
-                <span className="col"> <Button title='Excluir' url={'url'} color='danger' /> </span>
+                <span className="col"> <DeleteButton itemId={id} itemName={name}/> </span>
             </div>
         </div>
     )

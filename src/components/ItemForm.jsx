@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import SaveButton from "./SaveButton"
 import PropTypes from "prop-types"
 import { StockItem, CATEGORIES } from "../entities/StockItem.js"
@@ -19,6 +19,7 @@ export default function ItemForm({ itemToUpdate }) {
 
     const [item, setItem] = useState(itemToUpdate ? itemToUpdate : defaultItem)
     const { addItem } = useStock()
+    const inputRef = useRef(null)
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -27,6 +28,8 @@ export default function ItemForm({ itemToUpdate }) {
             addItem(validItem)
             console.log(validItem)
             setItem(defaultItem)
+            alert('Item salvo com sucesso!')
+            inputRef.current.focus() // Foca no primeiro item do formulário após o envio e reset do mesmo 
         }
         catch (error) {
             console.log(error)
@@ -55,6 +58,7 @@ export default function ItemForm({ itemToUpdate }) {
                             id="name"
                             name="name"
                             required
+                            ref={inputRef}
                             value={item.name}
                             onChange={handleChange}
                         />

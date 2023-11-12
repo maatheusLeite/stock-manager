@@ -29,9 +29,19 @@ export function StockContextProvider({ children }) {
         })
     }
 
+    function deleteItem(itemId) {
+        setItems(currentState => {
+            const updatedItems = currentState.filter(item => item.id !== itemId) // Cria um novo array com todos os itens originais exceto o com o ID expecificado
+            localStorage.setItem('ml-react-stock', JSON.stringify(updatedItems))
+            return updatedItems
+        })
+    }
+
+    // Valores e funções a serem exportadas
     const stock = {
         items,
-        addItem
+        addItem,
+        deleteItem
     }
 
     return (
