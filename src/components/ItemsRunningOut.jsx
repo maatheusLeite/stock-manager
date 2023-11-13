@@ -1,6 +1,11 @@
 import ItemRunningOut from "./ItemRunningOut";
+import PropTypes from "prop-types";
 
-export default function ItemsRunningOut() {
+ItemsRunningOut.propTypes = {
+    itemsRunningOut: PropTypes.array
+}
+
+export default function ItemsRunningOut({ itemsRunningOut }) {
     return (
         <div className="col">
             <div className="row bg-dark shadow p-4">
@@ -9,7 +14,11 @@ export default function ItemsRunningOut() {
                 <span className="col fw-bold px-3"> Ações </span>
             </div>
 
-            <ItemRunningOut title='7 Wonders' qtd={8} url='teste3'/>
+            {
+                itemsRunningOut.map((item) => (
+                    <ItemRunningOut key={item.id} name={item.name} quantity={item.quantity} url={`/stock/${item.id}`} />)
+                )
+            }
         </div>
     )
 }

@@ -1,15 +1,21 @@
 import RecentItem from "./RecentItem";
+import PropTypes from "prop-types";
 
-export default function RecentItems() {
+RecentItems.propTypes = {
+    recentItems: PropTypes.array
+}
+
+export default function RecentItems({ recentItems }) {
     return (
         <div className="col">
             <div className="row bg-dark shadow p-4">
                 <span className="col-8 fw-bold"> Items Recentes </span>
                 <span className="col fw-bold px-3"> Ações </span>
             </div>
-
-            <RecentItem title='7 Wonders' url='teste' />
-            <RecentItem title='O Senhor dos Anéis' url='teste2' />
+            
+            {
+                recentItems.map((item) => <RecentItem key={item.id} title={item.name} url={`/stock/${item.id}`} />)  
+            }
         </div>
     )
 }

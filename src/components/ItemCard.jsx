@@ -13,7 +13,7 @@ ItemCard.propTypes = {
 
 export default function ItemCard({ id, name, quantity, category, urlShow, urlUpdate }) {    
     return (
-        <div className="row p-4">
+        <div className="row p-4 onMouse">
             <span className="col-4"> {id} </span>
             <span className="col-2"> {name} </span>
             <span className="col-1"> {`${quantity} unid.`} </span>
